@@ -1,0 +1,18 @@
+trigger:
+- main
+
+pool:
+  name: 'on-premagent'  # Specifies the self-hosted agent pool
+
+steps: # Changes
+
+- script: |
+    # Install Python 3.11 if not installed
+    sudo apt-get update -y
+    sudo apt install python3
+  displayName: 'Install Python 3.11 if not present'
+
+
+- script: |
+    python3 test.py  # Run test.py
+  displayName: 'Run test.py'

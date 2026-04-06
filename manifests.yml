@@ -1,0 +1,25 @@
+name: Deleting
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions: 
+ contents: write 
+
+jobs: 
+ test: 
+   runs-on: ubuntu-latest 
+   steps: 
+     - name: Checkout Code 
+       uses: actions/checkout@v2
+     - name: Pull latest
+       run: git pull origin main --rebase
+     - name: Run Tests 
+       run: |
+         git rm README.md
+         git config --global user.name "Auto CI"
+         git config --global user.email "bot@yourcompany.com"
+         git commit -am "cleanup"
+         git push origin HEAD:main
